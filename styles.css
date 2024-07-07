@@ -1,0 +1,146 @@
+/* Updated colors for the theme */
+body {
+    background-color: lightsteelblue; /* White */
+    color: #333333; /* Dark gray for text */
+    font-family: "Fira Code", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    max-width: 400px; /* Adjust as needed */
+    margin: auto; /* Center align */
+    padding: 20px;
+}
+
+.title {
+    color: #6c5ce7; /* Purple */
+    margin-bottom: 20px; /* Space below title */
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin-bottom: 20px; /* Space below board */
+}
+
+.tile {
+    background-color: #3498db; /* Blue */
+    color: white;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    cursor: pointer;
+    position: relative; /* Ensure relative positioning for pseudo-elements */
+    transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+    border-radius: 10px; /* Rounded corners */
+}
+
+.tile:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Animation for placing X and O */
+.tile.x::after, .tile.o::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.tile.x::after {
+    background-color: #3498db; /* Blue color for X */
+}
+
+.tile.o::after {
+    background-color: #f39c12; /* Orange color for O */
+}
+
+.tile.x.placed::after, .tile.o.placed::after {
+    opacity: 1;
+}
+
+.message {
+    position: relative; /* Ensure relative positioning for popup */
+    margin-bottom: 20px; /* Space below message */
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above other content */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Disable interaction */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.popup-content {
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow */
+    text-align: center;
+}
+
+.popup-content #winMessage {
+    color: #6c5ce7; /* Purple for message */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    background-color: #3498db; /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.close-btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+.restart-btn {
+    background-color: #6c5ce7; /* Purple */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+    border-radius: 10px; /* Rounded corners */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease-in-out;
+    margin-top: 20px; /* Space above the button */
+}
+
+.restart-btn:hover {
+    background-color: #4834d4; /* Darker purple on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+.restart-btn.loaded {
+    opacity: 1; /* Show button with animation */
+}
